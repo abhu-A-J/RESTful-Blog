@@ -13,7 +13,10 @@ app.use(expressSanitizer());
 
 app.use(methodOverride("_method"));
 
-mongoose.connect("mongodb://localhost/blog_site", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/blog_site", { useUnifiedTopology: true, useNewUrlParser: true })
+.then(() => console.log('DB Connected!'))
+.catch(err => console.log(`DB Connection Error: ${err.message}`)
+);
 
 var blogSchema = new mongoose.Schema({
   title: String,
